@@ -9,18 +9,18 @@ import Spinner from "../../components/Spinner";
 const Orders = () => {
     const [orders, setOrders] = useState([]);
     // const [loading, setLoading] = useState(false);
-    //
-    // useEffect(() => {
-    //     setLoading(true);
-    //     data.orders()
-    //         .then((data) => {
-    //             setOrders(data);
-    //             setLoading(false);
-    //             console.log(data);
-    //         })
-    //         .catch((e) => console.log(e));
-    // }, []);
-    //
+
+    useEffect(() => {
+        // setLoading(true);
+        data.orders()
+            .then((data) => {
+                setOrders(data);
+                setLoading(false);
+                console.log(data);
+            })
+            .catch((e) => console.log(e));
+    }, []);
+
     // if (loading) {
     //     return <Spinner />;
     // } else
@@ -39,10 +39,10 @@ const Orders = () => {
                         <tbody>
                         {orders.map((o, i) => (
                             <tr key={i}>
-                                <td data-label="ShippingAddress">{o.address}</td>
+                                <td data-label="shippingAddress">{o.shippingAddress}</td>
                                 <td data-label="items">{o.items}</td>
                                 <td data-label="payment">{o.payment}</td>
-                                <td data-label="billingAddress">{o.payment.address}</td>
+                                <td data-label="billingAddress">{o.billingAddress}</td>
                             </tr>
                         ))}
                         </tbody>

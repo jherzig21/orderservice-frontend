@@ -6,7 +6,6 @@ const About = () => {
             <p>
                 This is an order service that allows the user to create and find orders.
             </p>
-
         </>
     )
 }

@@ -7,6 +7,14 @@ let findOrder = () => {
 };
 
 let saveOrder = (order) => {
+    let items = order.items.map((item) => {
+        return {
+            name: item.name,
+            price: item.price,
+            quantity: 1
+        };
+    });
+
     return fetch(host + "/order", {
         method: 'POST',
         headers: {
@@ -15,21 +23,19 @@ let saveOrder = (order) => {
         body: JSON.stringify({
             total: order.total,
             shippingAddress: order.shippingAddress,
-            item: order.items,
-            payment: order.payment,
+            items: items,
+            payment: order.paymentMethod,
             billingAddress: order.billingAddress,
         })
-    }).then(response =>
-    {
+    }).then(response => {
         if (response.status == 200 || response.status == 201) return response.json();
         return null;
-    })
-        .then(id => id)
+    }).then(id => id)
         .catch(error => {
             console.log(error);
             return null;
         });
-}
+};
 
 let data = {
     orders: findOrder,
